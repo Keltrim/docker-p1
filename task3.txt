@@ -1,0 +1,69 @@
+maltrum@MacBook-Pro-ERMOLENKO 4 % docker pull node:20.12.2                                                          
+20.12.2: Pulling from library/node
+1e92f3a395ff: Pull complete 
+374850c6db17: Pull complete 
+421c44fab18b: Pull complete 
+b9717a38adec: Pull complete 
+a4516e430499: Pull complete 
+b32feb839d4f: Pull complete 
+5cf6a97f5767: Pull complete 
+b0cbbecea151: Pull complete 
+Digest: sha256:bb4bbe2e5307ba2982c1263b26ee72593ba680280085ee39eaf631b8b2a57dcb
+Status: Downloaded newer image for node:20.12.2
+docker.io/library/node:20.12.2
+
+What's Next?
+  1. Sign in to your Docker account → docker login
+  2. View a summary of image vulnerabilities and recommendations → docker scout quickview node:20.12.2
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO 4 %  docker run --name first_node -d -v ./data:/var/first/data node:20.12.2 sleep infinity
+6ff95ef91b50c249cb8ecec94a7ab0d600a93b4bac514f5c84804625d84c1302
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO 4 %  docker run --name second_node -d -v ./data:/var/second/data node:20.12.2 sleep infinity
+8aaa60995c8afdbb7f4b6c24f2bd2fd3a7877812cd1a8fe1f6942d92bc3f23f9
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO 4 % docker exec -d first_node touch /var/first/data/1.txt
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO 4 % docker exec -it second_node ls /var/second/data
+1.txt  2.txt
+
+What's next?
+  Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug second_node
+  Learn more at https://docs.docker.com/go/debug-cli/
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO 4 % docker stop first_node
+first_node
+maltrum@MacBook-Pro-ERMOLENKO 4 % docker stop second_node
+second_node
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO 4 % docker rm first_node
+first_node
+maltrum@MacBook-Pro-ERMOLENKO 4 % docker rm second_node
+second_node
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO 4 % docker rmi node:20.12.2
+Untagged: node:20.12.2
+Untagged: node@sha256:bb4bbe2e5307ba2982c1263b26ee72593ba680280085ee39eaf631b8b2a57dcb
+Deleted: sha256:e748e481afe7fa47b103d2ea026ea913fc1a5bd7d64b3b50d69f1ff20c5b94fa
+Deleted: sha256:a3cb4e675dac74f6bdb194ad21761c264ee5451b214d893c6a2c6a3c03112852
+Deleted: sha256:7a5f4c9b6ec2bed569623e7942efcd240107927efb0a2177fe689203dd3788ab
+Deleted: sha256:873e9b25bd940d415a9be8271fe82fdb97e02abbe132e115dfd1321c6ce48b0b
+Deleted: sha256:4318ac7f8bb1be559965ae9f9c27ed754cd7d0ee80b3a9f793d812a8441031d3
+Deleted: sha256:c74f00120d7395bdc1376735349337250a6333e57b9bb4c2e08da795101eb92b
+Deleted: sha256:a33a62769fb7820344d02a4e9c6983f2db965d0d250b87482daad391b93898a0
+Deleted: sha256:b20b2450897ec86da62e7a86f9461d3f30e8e3196b1a10fa9e6846779d10cbb0
+Deleted: sha256:7773f6e2f057e8defc1bfecd1d96414d8273040c8ac5cdaea2d03caef3692c27

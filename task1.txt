@@ -1,0 +1,104 @@
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker pull busybox:latest 
+latest: Pulling from library/busybox
+45d8eb5967de: Pull complete 
+Digest: sha256:c3839dd800b9eb7603340509769c43e146a74c63dca3045a8e7dc8ee07e53966
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+
+What's Next?
+  1. Sign in to your Docker account → docker login
+  2. View a summary of image vulnerabilities and recommendations → docker scout quickview busybox:latest
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker run --name pinger busybox ping -c 7 netology.ru
+PING netology.ru (188.114.98.229): 56 data bytes
+64 bytes from 188.114.98.229: seq=0 ttl=63 time=145.273 ms
+64 bytes from 188.114.98.229: seq=1 ttl=63 time=48.290 ms
+64 bytes from 188.114.98.229: seq=2 ttl=63 time=44.269 ms
+64 bytes from 188.114.98.229: seq=3 ttl=63 time=43.427 ms
+64 bytes from 188.114.98.229: seq=4 ttl=63 time=131.751 ms
+64 bytes from 188.114.98.229: seq=5 ttl=63 time=57.253 ms
+64 bytes from 188.114.98.229: seq=6 ttl=63 time=52.393 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 43.427/74.665/145.273 ms
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                          PORTS     NAMES
+0a3fe56502b6   busybox   "ping -c 7 netology.…"   About a minute ago   Exited (0) About a minute ago             pinger
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker logs -t pinger
+2024-04-24T07:32:26.759526465Z PING netology.ru (188.114.98.229): 56 data bytes
+2024-04-24T07:32:26.759624465Z 64 bytes from 188.114.98.229: seq=0 ttl=63 time=145.273 ms
+2024-04-24T07:32:27.667659049Z 64 bytes from 188.114.98.229: seq=1 ttl=63 time=48.290 ms
+2024-04-24T07:32:28.666892925Z 64 bytes from 188.114.98.229: seq=2 ttl=63 time=44.269 ms
+2024-04-24T07:32:29.667416925Z 64 bytes from 188.114.98.229: seq=3 ttl=63 time=43.427 ms
+2024-04-24T07:32:30.759561967Z 64 bytes from 188.114.98.229: seq=4 ttl=63 time=131.751 ms
+2024-04-24T07:32:31.687718843Z 64 bytes from 188.114.98.229: seq=5 ttl=63 time=57.253 ms
+2024-04-24T07:32:32.688721260Z 64 bytes from 188.114.98.229: seq=6 ttl=63 time=52.393 ms
+2024-04-24T07:32:32.688930510Z 
+2024-04-24T07:32:32.688969177Z --- netology.ru ping statistics ---
+2024-04-24T07:32:32.688974135Z 7 packets transmitted, 7 packets received, 0% packet loss
+2024-04-24T07:32:32.688978427Z round-trip min/avg/max = 43.427/74.665/145.273 ms
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker start pinger                                   
+pinger
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker ps -a         
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS     NAMES
+0a3fe56502b6   busybox   "ping -c 7 netology.…"   8 minutes ago   Exited (0) 14 seconds ago             pinger
+
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker logs -t pinger
+2024-04-24T07:32:26.759526465Z PING netology.ru (188.114.98.229): 56 data bytes
+2024-04-24T07:32:26.759624465Z 64 bytes from 188.114.98.229: seq=0 ttl=63 time=145.273 ms
+2024-04-24T07:32:27.667659049Z 64 bytes from 188.114.98.229: seq=1 ttl=63 time=48.290 ms
+2024-04-24T07:32:28.666892925Z 64 bytes from 188.114.98.229: seq=2 ttl=63 time=44.269 ms
+2024-04-24T07:32:29.667416925Z 64 bytes from 188.114.98.229: seq=3 ttl=63 time=43.427 ms
+2024-04-24T07:32:30.759561967Z 64 bytes from 188.114.98.229: seq=4 ttl=63 time=131.751 ms
+2024-04-24T07:32:31.687718843Z 64 bytes from 188.114.98.229: seq=5 ttl=63 time=57.253 ms
+2024-04-24T07:32:32.688721260Z 64 bytes from 188.114.98.229: seq=6 ttl=63 time=52.393 ms
+2024-04-24T07:32:32.688930510Z 
+2024-04-24T07:32:32.688969177Z --- netology.ru ping statistics ---
+2024-04-24T07:32:32.688974135Z 7 packets transmitted, 7 packets received, 0% packet loss
+2024-04-24T07:32:32.688978427Z round-trip min/avg/max = 43.427/74.665/145.273 ms
+2024-04-24T07:40:11.328189125Z PING netology.ru (188.114.98.229): 56 data bytes
+2024-04-24T07:40:11.328213666Z 64 bytes from 188.114.98.229: seq=0 ttl=63 time=94.411 ms
+2024-04-24T07:40:12.428049917Z 64 bytes from 188.114.98.229: seq=1 ttl=63 time=188.553 ms
+2024-04-24T07:40:13.290217501Z 64 bytes from 188.114.98.229: seq=2 ttl=63 time=46.092 ms
+2024-04-24T07:40:14.297455418Z 64 bytes from 188.114.98.229: seq=3 ttl=63 time=52.273 ms
+2024-04-24T07:40:15.294483168Z 64 bytes from 188.114.98.229: seq=4 ttl=63 time=46.842 ms
+2024-04-24T07:40:16.303657544Z 64 bytes from 188.114.98.229: seq=5 ttl=63 time=53.349 ms
+2024-04-24T07:40:17.324440128Z 64 bytes from 188.114.98.229: seq=6 ttl=63 time=72.183 ms
+2024-04-24T07:40:17.324683128Z 
+2024-04-24T07:40:17.324718461Z --- netology.ru ping statistics ---
+2024-04-24T07:40:17.324726128Z 7 packets transmitted, 7 packets received, 0% packet loss
+2024-04-24T07:40:17.324732211Z round-trip min/avg/max = 46.092/79.100/188.553 ms
+
+
+
+Определите по логам общее количество запусков команды ping и какое общее количество отправленых запросов: 2 и 14?
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker rm pinger
+pinger
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker ps -a         
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+
+
+maltrum@MacBook-Pro-ERMOLENKO ~ % docker rmi busybox:latest
+Untagged: busybox:latest
+Untagged: busybox@sha256:c3839dd800b9eb7603340509769c43e146a74c63dca3045a8e7dc8ee07e53966
+Deleted: sha256:46bd05c4a04f3d121198e054da02daed22d0f561764acb0f0594066d5972619b
+Deleted: sha256:3c4bc35c677d052e8ce865edea845689bf92fe12482683243d74f93fb690b893
